@@ -1,0 +1,27 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="1column">
+	<head>
+		<!-- custom styles -->
+		<css src="Test_CurrencyConverter/css/currency-converter.css" />
+	</head>
+    <body>
+        <referenceContainer name="content">
+            <block name="currency-converter" class="Magento\Framework\View\Element\Template"
+            		template="Test_CurrencyConverter::currency-converter.phtml">
+	            <arguments>
+					<argument name="jsLayout" xsi:type="array">
+						<!-- knockoutjs component registration -->
+						<item name="components" xsi:type="array">
+							<item name="currencyconverter" xsi:type="array">
+								<item name="component" xsi:type="string">Test_CurrencyConverter/js/currency-converter</item>
+								<item name="config" xsi:type="array">
+                                    <item name="conversionServiceUrl" xsi:type="string">/rest/V1/currency-converter/convert-currency</item>
+                                </item>
+                             </item>
+						</item>
+					</argument>
+				</arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

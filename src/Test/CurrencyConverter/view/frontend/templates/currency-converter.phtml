@@ -1,0 +1,45 @@
+<?php
+    /** @var $block \Magento\Framework\View\Element\Template */
+?>
+<section class="currency-converter" data-bind="scope: 'currencyconverter'">
+	<div id="checkout-loader" data-role="checkout-loader" class="loading-mask" data-mage-init='{"checkoutLoader": {}}'>
+        <div class="loader">
+            <img src="<?php echo $block->getViewFileUrl('images/loader-1.gif'); ?>"
+                 alt="<?php echo __('Loading...'); ?>"
+                 style="position: absolute;">
+        </div>
+    </div>
+
+	<h1><?php echo __('Converter'); ?></h1>
+	<div class="message error" style="display: none;" data-bind="visible: errors">
+		<span data-bind="text: errors"></span>
+	</div>
+	<form data-bind="submit: convertCurrency, blockLoader: isLoading">
+    	<div>
+    		<span class="currency"><?php echo __('RUB:'); ?></span>
+    		<input class="field" type="number" step="any" min="0" required="required" data-bind="value: inputValue" />
+	    	<button type="submit"><?php echo __('Convert'); ?></button>
+		</div>
+    	<div style="display: none;" data-bind="visible: outputValue">
+    		<span class="currency"><?php echo __('PLN:'); ?></span>
+    		<input class="field" type="text" disabled="disabled" data-bind="value: outputValue" />
+    	</div>
+	</form>
+
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": <?php echo $block->getJsLayout(); ?>
+        }
+    }
+    </script>
+    <script>
+        require([
+            'mage/url',
+            'Magento_Ui/js/block-loader'
+        ], function(url, blockLoader) {
+            blockLoader("<?php echo $block->getViewFileUrl('images/loader-1.gif'); ?>");
+            return url.setBaseUrl('<?php echo $block->getBaseUrl();?>');
+        })
+    </script>
+</section>

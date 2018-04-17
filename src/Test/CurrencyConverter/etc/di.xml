@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<!--  WebAPI data models -->
+    <preference for="Test\CurrencyConverter\Api\CurrencyConverterServiceInterface" type="Test\CurrencyConverter\Service\FixerService" />
+
+	<!--  WebAPI services -->
+    <preference for="Test\CurrencyConverter\Api\Data\CurrencyDataInterface" type="Test\CurrencyConverter\Model\Data\CurrencyModel" />
+
+    <!-- http client for Fixer Service -->
+    <virtualType name="fixerCurrencyConverterClient" type="GuzzleHttp\Client">
+        <arguments>
+            <argument name="config" xsi:type="array">
+                <item name="base_uri" xsi:type="string">http://api.fixer.io/latest</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Fixer conversion service -->
+    <type name="Test\CurrencyConverter\Service\FixerService">
+        <arguments>
+            <argument name="httpClient" xsi:type="object">fixerCurrencyConverterClient</argument>
+        </arguments>
+    </type>
+
+</config>

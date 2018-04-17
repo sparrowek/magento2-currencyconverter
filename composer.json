@@ -1,0 +1,20 @@
+{
+    "name": "gluberw/magento2-currencyconverter",
+    "type": "magento2-module",
+    "description": "Currency converter module for Magento2",
+    "version" : "1.0.0",
+    "require": {
+        "php": "~7.0.0",
+        "magento/product-community-edition" : "~2.2",
+        "guzzlehttp/guzzle": "^6.3",
+        "jms/serializer" : "^1.11"
+    },
+    "autoload": {
+        "files": [
+			"src/Test/CurrencyConverter/registration.php"
+		],
+        "psr-4": {
+            "": "src/"
+        }
+    }
+}
