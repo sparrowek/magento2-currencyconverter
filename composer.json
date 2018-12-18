@@ -1,5 +1,5 @@
 {
-    "name": "gluberw/magento2-currencyconverter",
+    "name": "sparrowek/magento2-currencyconverter",
     "type": "magento2-module",
     "description": "Currency converter module for Magento2",
     "version" : "1.0.0",
